@@ -4,7 +4,11 @@ var ctx = canvas.getContext("2d");
 var codeField = document.getElementById("code-field");
 var editor = CodeMirror.fromTextArea(codeField, {
     lineNumbers: true,
-    theme: "darcula"
+    autoCloseTags: true,
+    matchBrackets: true,
+    continueComments: "Enter",
+    extraKeys: {"Ctrl-Q": "toggleComment"},
+    theme: "darcula",
 });
 
 var node = new binaryNode(1,

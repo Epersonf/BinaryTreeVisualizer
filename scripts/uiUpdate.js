@@ -18,7 +18,7 @@ var codeSelection = [
             null
         )
     )`,
-    `let node;
+`let node;
 
 if (!node && this.left)
     node = await this.left.searchKey(key);

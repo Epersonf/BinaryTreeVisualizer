@@ -31,12 +31,12 @@ class binaryNode {
         this.y = y;
 
         if (this.left) {
-            this.drawLines(ctx, x, y, marginX, marginY, "#fff");
-            this.left.printNodes(ctx, x + marginX, y + marginY, marginX/2);
+            this.drawLines(ctx, x, y, -marginX, marginY, "#fff");
+            this.left.printNodes(ctx, x - marginX, y + marginY, marginX/2);
         }
         if (this.right) {
-            this.drawLines(ctx, x, y, -marginX, marginY, "#fff");
-            this.right.printNodes(ctx, x - marginX, y + marginY, marginX/2);
+            this.drawLines(ctx, x, y, marginX, marginY, "#fff");
+            this.right.printNodes(ctx, x + marginX, y + marginY, marginX/2);
         }
         
         this.draw(ctx, x, y, "#000", (!this.checked) ? "#fff" : "#22AA22");
