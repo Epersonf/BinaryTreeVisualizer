@@ -10,22 +10,20 @@ class binaryNode {
         this.right = right;
     }
 
-    async searchKey(key) {
-        await sleep(500);
+    async searchKey(key, code=codeSelection[1]) {
+        return await eval("(async () => {" + code + "})()");
+    }
 
-        let node;
+    executeOnNodes(action) {
+        action(this);
+        if (this.left) this.left.executeOnNodes(action);
+        if (this.right) this.right.executeOnNodes(action);
+    }
 
-        if (this.key == key) node = this;
-        this.draw(ctx, this.x, this.y, "#000", "#22AA22");
-
-        if (!node && this.left)
-            node = await this.left.searchKey(key);
-        
-
-        if (!node && this.right)
-            node = await this.right.searchKey(key);
-        
-        return node;
+    seen(v) {
+        this.checked = v;
+        if (v)
+            this.draw(ctx, this.x, this.y, "#000", "#22AA22");
     }
 
     printNodes(ctx, x, y, marginX=100, marginY=100) {
@@ -41,7 +39,7 @@ class binaryNode {
             this.right.printNodes(ctx, x - marginX, y + marginY, marginX/2);
         }
         
-        this.draw(ctx, x, y, "#000", "#fff");
+        this.draw(ctx, x, y, "#000", (!this.checked) ? "#fff" : "#22AA22");
     }
 
     drawLines(ctx, x, y, marginX, marginY, color) {

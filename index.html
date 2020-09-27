@@ -5,11 +5,16 @@
         <link rel="stylesheet" href="reset.css">
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="lib/CodeMirror/codemirror.css">
+        <link rel="stylesheet" href="lib/CodeMirror/darcula.css">
         <script src="lib/CodeMirror/codemirror.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>BinaryVisualizer</title>
     </head>
     <body>
+        <div class="tabs">
+            <button onclick="updateTextBox(0);">Tree creation</button>
+            <button onclick="updateTextBox(1);">Selection method</button> 
+        </div>
         <textarea id="code-field"></textarea>
         <div class="button-bar">
             <button onclick="search()">Run</button>
@@ -19,8 +24,8 @@
             Not supported!
         </canvas>
     </body>
-    <script src="/scripts/uiUpdate.js"></script>
     <script src="/scripts/binarytree.js"></script>
     <script src="/scripts/canvasMove.js"></script>
     <script src="main.js"></script>
+    <script src="/scripts/uiUpdate.js"></script>
 </html>

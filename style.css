@@ -2,7 +2,24 @@ canvas {
     width: 100%;
 }
 
-.button-bar {
+button {
+    background-color: #333;
+    text-decoration: none;
+    border: none;
+    border: 1px solid #fafafa;
+    color: #fafafa;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .2s;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #fafafa;
+    color: #333;
+}
+
+div.button-bar, div.tabs {
     text-align: center;
     background-color: #333;
 }

@@ -3,7 +3,8 @@ var ctx = canvas.getContext("2d");
 
 var codeField = document.getElementById("code-field");
 var editor = CodeMirror.fromTextArea(codeField, {
-    lineNumbers: true
+    lineNumbers: true,
+    theme: "darcula"
 });
 
 var node = new binaryNode(1,
@@ -15,7 +16,7 @@ var node = new binaryNode(1,
 
 function clearCanvas() {
     ctx.beginPath();
-    ctx.fillStyle = "#000000";
+    ctx.fillStyle = "#444";
     ctx.rect(0, 0, canvas.width, canvas.height);
     ctx.fill();
 }
