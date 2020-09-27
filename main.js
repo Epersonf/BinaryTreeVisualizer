@@ -1,9 +1,10 @@
 var canvas = document.getElementById("root-canvas");
 var ctx = canvas.getContext("2d");
-document.addEventListener("keydown", keyDown);
-let posX = 0;
-let posY = 0;
-const speed = 15;
+
+var codeField = document.getElementById("code-field");
+var editor = CodeMirror.fromTextArea(codeField, {
+    lineNumbers: true
+});
 
 node = new binaryNode(1,
     new binaryNode(2, 
@@ -26,24 +27,6 @@ function printNode(node) {
 function render(node) {
     clearCanvas();
     printNode(node);
-}
-
-function keyDown(e) {
-    switch(e.key) {
-        case "a":
-            posX -= speed;
-            break;
-        case "d":
-            posX += speed;
-            break;
-        case "w":
-            posY -= speed;
-            break;
-        case "s":
-            posY += speed;
-            break;
-    }
-    render(node);
 }
 
 render(node);

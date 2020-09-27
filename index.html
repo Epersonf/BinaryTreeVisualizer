@@ -4,17 +4,19 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="reset.css">
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="lib/CodeMirror/codemirror.css">
+        <script src="lib/CodeMirror/codemirror.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>BinaryVisualizer</title>
     </head>
     <body>
+        <textarea id="code-field"></textarea>
         <canvas id="root-canvas" width="1920" height="1080">
             Not supported!
         </canvas>
-        <textarea>
-        </textarea>
     </body>
     <script src="/scripts/uiUpdate.js"></script>
     <script src="/scripts/binarytree.js"></script>
+    <script src="/scripts/canvasMove.js"></script>
     <script src="main.js"></script>
 </html>
