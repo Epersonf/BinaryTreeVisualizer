@@ -20,8 +20,8 @@ function mouseMove(e) {
     if (mouseX >= 0 && mouseY >= 0) {
         posX -= mouseX - e.pageX;
         posY -= mouseY - e.pageY;
+        render(node);
     }
     mouseX = e.pageX;
     mouseY = e.pageY;
-    render(node);
 }

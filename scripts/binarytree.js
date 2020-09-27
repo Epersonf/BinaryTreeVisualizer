@@ -1,3 +1,7 @@
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 class binaryNode {
 
     constructor(key, left, right) {
@@ -6,11 +10,27 @@ class binaryNode {
         this.right = right;
     }
 
-    searchKey(key) {
+    async searchKey(key) {
+        await sleep(500);
+
+        let node;
+
+        if (this.key == key) node = this;
+        this.draw(ctx, this.x, this.y, "#000", "#22AA22");
+
+        if (!node && this.left)
+            node = await this.left.searchKey(key);
         
+
+        if (!node && this.right)
+            node = await this.right.searchKey(key);
+        
+        return node;
     }
 
     printNodes(ctx, x, y, marginX=100, marginY=100) {
+        this.x = x;
+        this.y = y;
 
         if (this.left) {
             this.drawLines(ctx, x, y, marginX, marginY, "#fff");

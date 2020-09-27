@@ -6,7 +6,7 @@ var editor = CodeMirror.fromTextArea(codeField, {
     lineNumbers: true
 });
 
-node = new binaryNode(1,
+var node = new binaryNode(1,
     new binaryNode(2, 
         new binaryNode(4, null, null),
         new binaryNode(5, null, null)),

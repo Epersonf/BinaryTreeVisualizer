@@ -2,8 +2,7 @@ canvas {
     width: 100%;
 }
 
-#code-field {
-    resize: vertical;
-    width: 90%;
-    min-height: 100px;
+.button-bar {
+    text-align: center;
+    background-color: #333;
 }
