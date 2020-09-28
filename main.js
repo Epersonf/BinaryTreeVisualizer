@@ -26,6 +26,7 @@ function clearCanvas() {
 }
 
 function printNode(node) {
+    buttonClicked = false;
     node.printNodes(ctx, canvas.width/2 + posX, 50 + posY, canvas.width/4);
 }
 

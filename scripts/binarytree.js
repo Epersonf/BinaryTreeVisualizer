@@ -1,5 +1,15 @@
+var buttonClicked = false;
 function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+
+    const waitFor = (resolve) => {
+        if (buttonClicked) {
+            resolve();
+            buttonClicked = false;
+        } else
+            setTimeout(() => waitFor(resolve), 25);
+    }
+
+    return new Promise(waitFor);
 }
 
 class binaryNode {
