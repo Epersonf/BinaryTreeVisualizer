@@ -1,6 +1,9 @@
 var buttonClicked = false;
 function sleep(ms) {
 
+    if (ms)
+        return new Promise(resolve => setTimeout(resolve, ms));
+
     const waitFor = (resolve) => {
         if (buttonClicked) {
             resolve();
