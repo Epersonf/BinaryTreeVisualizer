@@ -1,23 +1,6 @@
 var canvas = document.getElementById("root-canvas");
 var ctx = canvas.getContext("2d");
 
-var codeField = document.getElementById("code-field");
-var editor = CodeMirror.fromTextArea(codeField, {
-    lineNumbers: true,
-    autoCloseTags: true,
-    matchBrackets: true,
-    continueComments: "Enter",
-    extraKeys: {"Ctrl-Q": "toggleComment"},
-    theme: "darcula",
-});
-
-var node = new binaryNode(1,
-    new binaryNode(2, 
-        new binaryNode(4, null, null),
-        new binaryNode(5, null, null)),
-    new binaryNode(3, null, null)
-);
-
 function clearCanvas() {
     ctx.beginPath();
     ctx.fillStyle = "#444";
@@ -31,6 +14,7 @@ function printNode(node) {
 }
 
 function render(node) {
+    node.executeOnNodes((e) => e.seen(false));
     clearCanvas();
     printNode(node);
 }

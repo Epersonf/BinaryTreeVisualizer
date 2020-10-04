@@ -1,18 +1,6 @@
 var buttonClicked = false;
 function sleep(ms) {
-
-    if (ms)
-        return new Promise(resolve => setTimeout(resolve, ms));
-
-    const waitFor = (resolve) => {
-        if (buttonClicked) {
-            resolve();
-            buttonClicked = false;
-        } else
-            setTimeout(() => waitFor(resolve), 25);
-    }
-
-    return new Promise(waitFor);
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 class binaryNode {
@@ -23,14 +11,37 @@ class binaryNode {
         this.right = right;
     }
 
-    async searchKey(key, code=codeSelection[1]) {
-        return await eval("(async () => {" + code + "})()");
+    async searchKey(key) {
+        let toReturn = null;
+
+        this.seen(true);
+        await sleep(200);
+        if (this.key == key && !toReturn)
+            toReturn = this;
+        
+        if (this.left && !toReturn)
+            toReturn = await this.left.searchKey(key);
+        
+        if (this.right && !toReturn)
+            toReturn = await this.right.searchKey(key);
+
+        return toReturn;
     }
 
     executeOnNodes(action) {
         action(this);
         if (this.left) this.left.executeOnNodes(action);
         if (this.right) this.right.executeOnNodes(action);
+    }
+
+    getHeight(sum = 1) {
+        let heightLeft = sum;
+        let heightRight = sum;
+        if (this.left != null)
+            heightLeft = this.left.getHeight(sum + 1);
+        if (this.right != null)
+            heightRight = this.right.getHeight(sum + 1);
+        return (heightLeft > heightRight) ? heightLeft : heightRight;
     }
 
     seen(v) {
@@ -77,3 +88,10 @@ class binaryNode {
         ctx.fillText(this.key, x, y);
     }
 }
+
+var node = new binaryNode(1,
+    new binaryNode(2, 
+        new binaryNode(4, null, null),
+        new binaryNode(5, null, null)),
+    new binaryNode(3, null, null)
+);

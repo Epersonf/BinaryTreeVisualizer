@@ -1,3 +1,8 @@
+:root {
+    background-color: #333;
+    overflow: hidden;
+}
+
 canvas {
     width: 100%;
 }
