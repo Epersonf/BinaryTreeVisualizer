@@ -13,10 +13,14 @@ function printNode(node) {
     node.printNodes(ctx, canvas.width/2 + posX, 50 + posY, canvas.width/4);
 }
 
-function render(node) {
-    node.executeOnNodes((e) => e.seen(false));
+function render(nodeToRender=node) {
     clearCanvas();
-    printNode(node);
+    printNode(nodeToRender);
+}
+
+function resetNode(nodeToRender=node) {
+    nodeToRender.executeOnNodes((e) => e.seen(false));
+    render(node);
 }
 
 render(node);

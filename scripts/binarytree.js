@@ -11,7 +11,7 @@ class binaryNode {
         this.right = right;
     }
 
-    async searchKey(key) {
+    async searchKey(key, compare) {
         let toReturn = null;
 
         this.seen(true);
@@ -19,11 +19,11 @@ class binaryNode {
         if (this.key == key && !toReturn)
             toReturn = this;
         
-        if (this.left && !toReturn)
-            toReturn = await this.left.searchKey(key);
+        if (this.left && !toReturn && compare(this, key))
+            toReturn = await this.left.searchKey(key, compare);
         
-        if (this.right && !toReturn)
-            toReturn = await this.right.searchKey(key);
+        if (this.right && !toReturn && !compare(this, key))
+            toReturn = await this.right.searchKey(key, compare);
 
         return toReturn;
     }
@@ -37,11 +37,27 @@ class binaryNode {
     getHeight(sum = 1) {
         let heightLeft = sum;
         let heightRight = sum;
+
         if (this.left != null)
             heightLeft = this.left.getHeight(sum + 1);
+
         if (this.right != null)
             heightRight = this.right.getHeight(sum + 1);
+
         return (heightLeft > heightRight) ? heightLeft : heightRight;
+    }
+
+    getMoreLeftNode() {
+        if (this.left == null) return this;
+        return this.left.getMoreLeftNode();        
+    }
+
+    getMoreRightNode() {
+        if (this.right == null) return this;
+        return this.right.getMoreLeftNode();
+    }
+
+    removeKey(key) {
     }
 
     seen(v) {
@@ -89,9 +105,12 @@ class binaryNode {
     }
 }
 
-var node = new binaryNode(1,
-    new binaryNode(2, 
-        new binaryNode(4, null, null),
-        new binaryNode(5, null, null)),
-    new binaryNode(3, null, null)
+var node = 
+new binaryNode(5,
+    new binaryNode(3,
+        new binaryNode(2, null, null),
+        new binaryNode(4, null, null)),
+    new binaryNode(8,
+        new binaryNode(6, null, null),
+        new binaryNode(10, null, null))
 );
